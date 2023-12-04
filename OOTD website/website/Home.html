@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Home</title>
+  <link rel="stylesheet" href="CSS.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="item-details.js"></script>
+  <style>
+    /* Centered align for the carousel container */
+    .carousel-container {
+      padding-top:13vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      background-color: #f0f0f0;
+      margin-bottom: 5%;
+      position: relative;
+    }
+
+    /* Styles for the carousel images */
+    .carousel-image {
+      display: none;
+      width: 80%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    /* Styles for the navigation buttons */
+    .carousel-button {
+      position: absolute;
+      top: 50%;
+      font-size: 35px;
+      background-color: none;
+      color: #000;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .carousel-button-left {
+      left: 10px;
+    }
+
+    .carousel-button-right {
+      right: 10px;
+    }
+
+    .dot-container {
+      position: absolute;
+      left: 15%;
+      top: 95%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 5px;
+      background-color: #FFF5F5;
+    }
+
+    .image-container {
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      justify-content: center;
+      align-content: center;
+      background-color: #D9D9D9;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    /* Styles for the title */
+    .image-title-container h1 {
+      font-weight:bolder;
+      font-size: 30px;
+      font-family: "Bookman Old Style", Georgia, serif;
+      width: 100%;
+    }
+
+    /* Styles for the image gallery */
+    .image-gallery {
+      justify-content: center;
+      flex-wrap: wrap;
+      background-color: #e09696;
+      width: 100%;
+    }
+
+    .image-gallery img {
+      margin: 20px;
+      width: 20%;
+      cursor: pointer;
+    }
+    
+    .image-gallery img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    @media screen and (max-width: 950px){
+      .carousel-container {
+        height: 100%;
+        margin-bottom: 10%;
+      }
+      .carousel-image{
+        object-fit: cover;
+        width: 100%;
+      }
+
+      .carousel-button {
+        background-color: rgba(128, 128, 128, 0.321);
+      }
+      
+      .image-gallery img {
+        width: 40%;
+      }
+    }
+
+    @media screen and (max-width: 480px){
+
+      .carousel-container {
+        height: 300px;
+        margin-bottom: 10%;
+      }
+
+      .carousel-button-left {
+        display: none;    
+      }
+
+      .carousel-button-right {
+          display: none;
+      }
+
+      .image-container {
+        width: 90%;
+      }
+
+      .image-gallery img {
+        width: 70%;
+        padding-top: 5%;
+      }
+
+      .image-title-container h1{
+        font-size: 25px;
+      }
+
+    }
+
+    
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+
+      <div class="topnav">
+        <a href="javascript:void(0);" class="icon" onclick="drop_down_function()">
+          <i class="fa fa-bars"></i>
+        </a>
+        <div id="browsing_links">
+          <a href="Browsing-page.html" id="men" onclick="navigate('Men')">MEN</a>
+          <a href="Browsing-page.html" id="women" onclick="navigate('Women')">WOMEN</a>
+          <a href="Browsing-page.html" id="kids" onclick="navigate('Kids')">KIDS</a>
+          <a href="Browsing-page.html" id="deals" onclick="navigate('Deals')">DEALS</a>
+        </div>
+      </div>
+
+      <div class="logo">
+        <a href="Home.html"><img src="images/logo.png" alt="Logo"></a>
+      </div>
+      <div class="navigation">
+        <ul>
+          <li><a href="Browsing-page.html" id="men" onclick="navigate('Men')">MEN</a></li>
+          <li><a href="Browsing-page.html" id="women" onclick="navigate('Women')">WOMEN</a></li>
+          <li><a href="Browsing-page.html" id="kids" onclick="navigate('Kids')">KIDS</a></li>
+          <li><a href="Browsing-page.html" id="deals" onclick="navigate('Deals')">DEALS</a></li>
+        </ul>
+      </div>
+      <div class="icons">
+        <div>
+          <a href="Wishlist-page.html"><img src="images/wishlist.png" alt="Wishlist"></a>
+        </div>
+        <div>
+          <a href="Shopping-cart-page.html"><img src="images/shopping-cart.png" alt="Shopping Cart"></a>
+        </div>
+        <div>
+          <a href="Login-page.html"><img src="images/profile.png" alt="Profile"></a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="carousel-container">
+    <button class="carousel-button carousel-button-left" onclick="slide(-1)">&#10094;</button>
+    <img class="carousel-image" src="images/model-image.jpg" alt="Model Image">
+    <img class="carousel-image" src="images/model-image2.jpg" alt="Model Image">
+    <img class="carousel-image" src="images/model-image3.jpg" alt="Model Image">
+    <button class="carousel-button carousel-button-right" onclick="slide(1)">&#10095;</button>
+    <div class="dot-container">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+  </div>
+
+  <script>
+    let slideIndex = 0;
+    showSlide(slideIndex);
+    setInterval(() => slide(1), 5000);
+
+    function slide(n) {
+      slideIndex += n;
+      showSlide(slideIndex);
+    }
+
+    function showSlide(n) {
+
+      const slides = document.getElementsByClassName("carousel-image");
+      const dots = document.getElementsByClassName("dot");
+      if (n >= slides.length) {
+        slideIndex = 0;
+      }
+      if (n < 0) {
+        slideIndex = slides.length-1;
+      }
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+        dots[i].style.backgroundColor = "#FFF5F5";
+      }
+      slides[slideIndex].style.display = "flex";
+      dots[slideIndex].style.backgroundColor = "#F88080";
+    }
+
+    function drop_down_function() {
+      var x = document.getElementById("browsing_links");
+      if (x.style.display === "block") {
+        x.style.display = "none";
+      } else {
+        x.style.display = "block";
+      }
+    }
+  </script>
+
+<div class="image-container">
+  <div class="image-title-container">
+    <h1>What's New!</h1>
+  </div>
+
+  <div class="image-gallery">
+    <a href="Item-page.html" onclick="set_current_browsing_item('item1')">
+      <img src="images/image1.png" alt="Item 1">
+    </a>
+    <a href="Item-page.html" onclick="set_current_browsing_item('item2')">
+      <img src="images/image2.png" alt="Item 2">
+    </a>
+    <a href="Item-page.html" onclick="set_current_browsing_item('item3')">
+      <img src="images/image3.png" alt="Item 3">
+    </a>
+    <a href="Item-page.html" onclick="set_current_browsing_item('item4')">
+      <img src="images/image4.png" alt="Item 4">
+    </a>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="left-div">
+    <div class="left-div-title-container">
+      <a href="Contact-us-page.html"><h2>Contact Us!</h2></a>
+    </div>
+    <div class="left-div-images-container">
+      <img src="images/facebook.avif" alt="Image 1">
+      <img src="images/instagram.png" alt="Image 2">
+      <img src="images/email.png" alt="Image 3" style="width: 30px;">
+    </div>
+  </div>
+  <div class="right-div">
+    <input type="text" class="search-bar" placeholder="Looking for something else?">
+  </div>
+</footer>
+
+</body>
+</html>

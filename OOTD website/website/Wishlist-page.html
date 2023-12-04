@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Wishlist</title>
+  <link rel="stylesheet" href="CSS.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="item-details.js"></script>
+  <style>
+    /* Styles for layout and elements */
+    /* ... */
+    
+    .notification {
+      position:fixed;
+      z-index: 999;
+      top: 13%;
+      right: 1%;
+      background-color: #F99E9E;
+      color: white;
+      padding: 10px;
+      display: none;
+    }
+
+    .wishlist-title {
+      text-align: center;
+      font-family:URW Chancery L, cursive; 
+      font-style: none;
+      font-weight: bold;
+      font-size: 28px;
+      margin-top: 15vh;
+    }
+
+    #wishlist-container {
+      width: 70%;
+      height: 55vh;
+      margin: 18px auto 0;
+      display: flex;
+      justify-content:space-around;  
+      border-style: solid;
+      border-color: black;
+      border-width: 1.5px;
+      overflow:scroll;
+      overflow-x: hidden;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      border-radius: 10px;
+    }
+
+    .wishlist-item {
+      width: 200px;
+      height:350px;
+      /* CHANGED MIN-WIDTH (ORIGINAL 200PX) */ 
+      min-width: 20%;
+      margin: 10px;
+      margin-left: 3.5%; 
+      padding: 10px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      position: relative;
+    }
+
+    .wishlist-item img {
+      width: 100%;
+      height: 60%;
+      /* object-fit: cover; */
+    }
+
+    .wishlist-item-name {
+      font-weight: bold;
+      margin: 5px 0;
+    }
+
+    .wishlist-item-price {
+      font-weight: bolder;
+    }
+
+    .wishlist-item-size-addtocart-div{
+      display:flex;
+      justify-content: space-between;
+      width: 92%;
+      position: absolute;
+      bottom: 0px;
+      padding-top: 10px;
+    }
+    .wishlist-item-size {
+      margin-top: 10.5px;
+      width: 43.5px;
+      border-radius: 30px;
+      
+     
+    }
+    .wishlist-item-size select {
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+
+    .wishlist-item-add-to-cart button {
+      background-color: #F99E9E;
+      color: white;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      border-radius: 20px;
+      height: 30px;
+      margin-top: 10px;
+      margin-left: 10px;
+      vertical-align: center;
+      display:flex;
+      align-items: center;
+    }
+
+    .wishlist-item-trash-bin{
+      margin:10px;
+      margin-right: 0;
+      margin-top: 13px;
+      opacity: 77%;
+      cursor: pointer;
+    }
+
+    footer{
+      position:absolute;
+      bottom:0%;
+    }
+
+    @media screen and (max-width: 1420px){
+      .wishlist-item {
+        min-width: 100px;
+        max-width: 250px;
+        width: 28%;
+
+      }
+
+      .wishlist-item img {
+        width: 100%;
+        max-width: 190px;
+        height: 55%;
+        object-fit: contain;
+        object-position: center;
+      }
+    }
+
+    @media screen and (max-width: 900px){
+      #wishlist-container {
+        height:60vh;
+        justify-content: center;
+      }
+
+      .wishlist-item {
+        width: 10%;
+        height:300px;
+        margin: 1%;
+        margin-bottom: 5%;
+        min-width: 45% ;
+      }
+      .wishlist-item img {
+        max-width:none;
+      }
+
+      .wishlist-item-price,.wishlist-item-name{
+        font-size: 14px
+      }
+    } 
+  
+    @media screen and (max-width: 660px){
+
+      .wishlist-item img {
+        height: 60%;
+      }
+
+      .wishlist-item {
+        margin-bottom: 10%;
+      }
+
+      .wishlist-item-price,.wishlist-item-name{
+        font-size: 13px
+      }
+
+      .wishlist-item-size-addtocart-div{
+        align-items: center;
+        margin-bottom: 5px;
+      }
+
+      .wishlist-item-add-to-cart button, .wishlist-item-trash-bin, .wishlist-item-size{
+        height: 20px;
+        font-size: 8px;
+        margin:0px;
+      }
+ 
+      .wishlist-item-size select {
+        width: unset; 
+        padding: 3%; 
+        margin-bottom: unset; 
+        font-size: 10px;
+       
+      } 
+      .wishlist-item-trash-bin{
+        margin-bottom: 5px;
+      }
+    } 
+
+    @media screen and (max-width: 450px){
+      .wishlist-item{
+        width: 70%;
+      }
+    }
+
+
+
+
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+
+      <div class="topnav">
+        <a href="javascript:void(0);" class="icon" onclick="drop_down_function()">
+          <i class="fa fa-bars"></i>
+        </a>
+        <div id="browsing_links">
+          <a href="Browsing-page.html" id="men" onclick="navigate('Men')">MEN</a>
+          <a href="Browsing-page.html" id="women" onclick="navigate('Women')">WOMEN</a>
+          <a href="Browsing-page.html" id="kids" onclick="navigate('Kids')">KIDS</a>
+          <a href="Browsing-page.html" id="deals" onclick="navigate('Deals')">DEALS</a>
+        </div>
+      </div>
+
+      <div class="logo">
+        <a href="Home.html"><img src="images/logo.png" alt="Logo"></a>
+      </div>
+      <div class="navigation">
+        <ul>
+          <li><a href="Browsing-page.html" id="men" onclick="navigate('Men')">MEN</a></li>
+          <li><a href="Browsing-page.html" id="women" onclick="navigate('Women')">WOMEN</a></li>
+          <li><a href="Browsing-page.html" id="kids" onclick="navigate('Kids')">KIDS</a></li>
+          <li><a href="Browsing-page.html" id="deals" onclick="navigate('Deals')">DEALS</a></li>
+        </ul>
+      </div>
+      <div class="icons">
+        <div>
+          <a href="Wishlist-page.html"><img src="images/wishlist.png" alt="Wishlist"></a>
+        </div>
+        <div>
+          <a href="Shopping-cart-page.html"><img src="images/shopping-cart.png" alt="Shopping Cart"></a>
+        </div>
+        <div>
+          <a href="Login-page.html"><img src="images/profile.png" alt="Profile"></a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+<!-- /* wish list tittle */ -->
+<h1 class="wishlist-title">Wishlist<img src="images/wishlist.png" alt="Wishlist" style="height:25px; padding-left: 15px; "></h1>
+<div class="notification" id="wishlist-notification">Item added!!!</div>
+<!-- /* wishlist container*/ -->
+<div id="wishlist-container" >
+
+</div>
+
+<footer class="footer">
+  <div class="left-div">
+    <div class="left-div-title-container">
+      <a href="Contact-us-page.html"><h2>Contact Us!</h2></a>
+    </div>
+    <div class="left-div-images-container">
+      <img src="images/facebook.avif" alt="Image 1">
+      <img src="images/instagram.png" alt="Image 2">
+      <img src="images/email.png" alt="Image 3" style="width: 30px;">
+    </div>
+  </div>
+  <div class="right-div">
+    <input type="text" class="search-bar" placeholder="Looking for something else?">
+  </div>
+</footer>
+
+  <script>
+    const storedItemDetailsString = sessionStorage.getItem('wishlist_array');
+
+        
+    // Parse the retrieved string back into an array
+    let retrieved_wishlist_array = JSON.parse(storedItemDetailsString);
+
+    const wishlist = [];
+
+    for (const itemID of retrieved_wishlist_array){
+      const item = itemDetails.find(item => item.id === itemID);
+      if (item) {
+        wishlist.push(item);
+      }
+    }
+
+    const wishlistContainer = document.getElementById('wishlist-container');
+
+    // Loop through the wishlist items and generate the HTML for each item
+    var i = 0;
+    wishlist.forEach(item => {
+      const itemHtml = `
+        <div class="wishlist-item">
+            <img src=${item.image} alt=${item.name}>
+            <div class="wishlist-item-name">${item.name}</div>
+            <div class="wishlist-item-price">${item.price}</div>
+            <div class="wishlist-item-size-addtocart-div">
+            <div class="wishlist-item-size">
+            <select id="size-${i}">
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+            </select>
+            </div>
+            <div class="wishlist-item-add-to-cart">
+            <button onclick="getNotification(),add_items_into_cart(${i})">Add to Cart</button>
+            </div>
+            <div class="wishlist-item-trash-bin" onclick="delete_item(${i})">
+              <img src="images/trash-bin.png" alt="trashbin" style="height: 23px;" >
+            </div>
+        </div>
+      `;
+
+      wishlistContainer.innerHTML += itemHtml;
+      i++;
+    });
+
+    function delete_item(id){
+    //remove item based on id
+    retrieved_wishlist_array.splice(id, 1);
+
+    // Convert the modified array back into a string
+    const updatedString = JSON.stringify(retrieved_wishlist_array);
+
+    // Store the updated string back into sessionStorage
+    sessionStorage.setItem('wishlist_array', updatedString);
+
+    location.reload()
+   };
+
+   // wishlist notification
+   const wishlistNotification = document.getElementById('wishlist-notification');
+
+   function getNotification(){
+      wishlistNotification.style.display = 'block';
+      setTimeout(() => {
+        wishlistNotification.style.display = 'none';
+      }, 2000); // Hide the notification after 2 seconds (adjust as needed)
+    }
+
+   function add_items_into_cart(index){
+
+      // Retrieve the array from sessionStorage
+      const storedItemDetailsString = sessionStorage.getItem('cart_array');
+      const storedItemDetailsString1 = sessionStorage.getItem('size_array');
+      const storedItemDetailsString2 = sessionStorage.getItem('quantity_array');
+ 
+      // Parse the retrieved string back into an array
+      let retrieved_array = JSON.parse(storedItemDetailsString);
+      retrieved_array.push(retrieved_wishlist_array[index]);
+      let retrieved_array1 = JSON.parse(storedItemDetailsString1);
+      retrieved_array1.push(document.getElementById("size-" + index).value);
+      let retrieved_array2 = JSON.parse(storedItemDetailsString2);
+      retrieved_array2.push(1);
+
+      // Convert the modified array back into a string
+      const updatedString = JSON.stringify(retrieved_array);
+      const updatedString1 = JSON.stringify(retrieved_array1);
+      const updatedString2 = JSON.stringify(retrieved_array2);
+
+      // Store the updated string back into sessionStorage
+      sessionStorage.setItem('cart_array', updatedString);
+      sessionStorage.setItem('size_array', updatedString1);
+      sessionStorage.setItem('quantity_array', updatedString2);
+
+    }
+
+    function drop_down_function() {
+      var x = document.getElementById("browsing_links");
+      if (x.style.display === "block") {
+        x.style.display = "none";
+      } else {
+        x.style.display = "block";
+      }
+    }
+  </script>
+</body>
+</html>

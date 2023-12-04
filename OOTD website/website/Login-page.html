@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>Login</title>
+      <link rel="stylesheet" href="CSS.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <script src="item-details.js"></script>
+      <style>
+
+        .main-content{
+          height: 80vh;
+          margin-top: 10vh;
+          display: flex;
+          align-items: center;
+        }
+        .contactus-container{
+          display: flex; 
+          justify-content: center; 
+          align-items: center; 
+          background-color: pink; 
+          flex-direction: column;
+          height: 300px;
+          width:30%;
+          min-width: 300px;
+          margin:auto;
+          border-radius: 20px;
+          padding:2%;
+          padding-left:2%;
+          padding-right:2%;    
+        }
+
+        form{
+          display: flex; 
+          flex-direction: column ; 
+          justify-content: center; 
+          align-content: center;
+        }
+
+        .container-insider{
+          display: flex; 
+          width: 100%; 
+          justify-content: center;
+          align-items: center;
+        }
+
+        .divinside{
+          display: flex; 
+          justify-content: flex-start;
+          flex-wrap: wrap; 
+          margin-top: 10%; 
+        }
+
+        h1{
+          text-align: center;
+          font-size: 180%;
+        }
+
+        input{
+          width: 100%;
+        }
+
+        .submit{
+          display:flex;
+          align-items: center;
+          justify-content: center;  
+          justify-content: space-around;
+          margin-top: 15%;
+            
+
+        }
+        .footer{
+          position: fixed;
+          bottom: 0%;
+        }
+
+
+      </style>
+
+      <script>
+        function validateFormLogin() {
+          var username = document.getElementById("name").value;
+          var password = document.getElementById("password").value;
+
+          var exampleUsername = "hello";
+          var examplePassword = "world";
+
+          if (username == exampleUsername && password == examplePassword) {
+            alert("Logged in!");
+          }
+          else{
+            alert("Wrong username or password!")
+          }
+        }
+
+        function validateFormSignUp() {
+          var username = document.getElementById("name").value;
+          var password = document.getElementById("password").value;
+
+          if (username !== "" && password !== "") {
+            alert("Signed up");
+          }
+        }
+
+        function drop_down_function() {
+          var x = document.getElementById("browsing_links");
+          if (x.style.display === "block") {
+            x.style.display = "none";
+          } else {
+            x.style.display = "block";
+          }
+        }
+      </script>
+  </head>
+
+
+  <body>
+    <header>
+      <div class="header-container">
+  
+        <div class="topnav">
+          <a href="javascript:void(0);" class="icon" onclick="drop_down_function()">
+            <i class="fa fa-bars"></i>
+          </a>
+          <div id="browsing_links">
+            <a href="Browsing-page.html" id="men" onclick="navigate('Men')">MEN</a>
+            <a href="Browsing-page.html" id="women" onclick="navigate('Women')">WOMEN</a>
+            <a href="Browsing-page.html" id="kids" onclick="navigate('Kids')">KIDS</a>
+            <a href="Browsing-page.html" id="deals" onclick="navigate('Deals')">DEALS</a>
+          </div>
+        </div>
+  
+        <div class="logo">
+          <a href="Home.html"><img src="images/logo.png" alt="Logo"></a>
+        </div>
+        <div class="navigation">
+          <ul>
+            <li><a href="Browsing-page.html" id="men" onclick="navigate('Men')">MEN</a></li>
+            <li><a href="Browsing-page.html" id="women" onclick="navigate('Women')">WOMEN</a></li>
+            <li><a href="Browsing-page.html" id="kids" onclick="navigate('Kids')">KIDS</a></li>
+            <li><a href="Browsing-page.html" id="deals" onclick="navigate('Deals')">DEALS</a></li>
+          </ul>
+        </div>
+        <div class="icons">
+          <div>
+            <a href="Wishlist-page.html"><img src="images/wishlist.png" alt="Wishlist"></a>
+          </div>
+          <div>
+            <a href="Shopping-cart-page.html"><img src="images/shopping-cart.png" alt="Shopping Cart"></a>
+          </div>
+          <div>
+            <a href="Login-page.html"><img src="images/profile.png" alt="Profile"></a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="main-content">
+      <div class="contactus-container">
+        <h1>Login/Sign Up</h1>
+        <div class="container-insider">
+          <form>
+            <div class="divinside">
+            <label for="name" style="width: 100%">Username</label>
+            <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="divinside">
+            <label for="password" style="width: 100%">Password</label>
+            <input type="password" id="password" name="password" required>
+            </div>
+            
+
+            <div class="submit">
+            <div ><input style="width: 100%;" type="submit" value="Sign Up" onclick="validateFormSignUp()"></div>
+            <div ><input style="width: 100%;" type="submit" value=" Login " onclick="validateFormLogin()"></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+
+    <footer class="footer">
+      <div class="left-div">
+        <div class="left-div-title-container">
+          <a href="Contact-us-page.html"><h2>Contact Us!</h2></a>
+        </div>
+        <div class="left-div-images-container">
+          <img src="images/facebook.avif" alt="Image 1">
+          <img src="images/instagram.png" alt="Image 2">
+          <img src="images/email.png" alt="Image 3" style="width: 30px;">
+        </div>
+      </div>
+      <div class="right-div">
+        <input type="text" class="search-bar" placeholder="Looking for something else?">
+      </div>
+    </footer>
+  </body>
+
+</html>

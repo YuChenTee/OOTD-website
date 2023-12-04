@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="CSS.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="item-details.js"></script>
+    <style>
+
+      main{
+        height: 100vh;
+        margin-top: 14vh;
+      }
+
+      main h1{
+        font-family:URW Chancery L, cursive; 
+
+      }
+
+      .topnav a {
+        font-weight: normal;
+      }
+
+      #shopping-cart-container {
+        display: flex;
+        flex-wrap: wrap;
+        border: 1px solid #ccc;
+        height: 65vh;
+        overflow: scroll;
+        margin-left: 50px;
+        margin-right: 50px;
+        overflow-x:hidden;
+      }
+  
+      .shopping-cart-item { 
+        display: flex;
+        width: 100%;
+        padding-left: 10px;
+        justify-content: space-between ;
+        align-items: center;
+        height: 250px;
+        margin-top: 2%;
+        margin-bottom: 2%;
+      }
+
+      .left{
+        display: flex;
+        align-items: center;
+        width: 50%;
+        margin-right: 1%;
+      }
+  
+      .right{
+        margin-right: 50px; 
+        display: flex; 
+        align-items: center; 
+        justify-content: space-between;
+        padding-right: 10px;
+        width: 40%;
+      }
+  
+      .left img{
+        min-width: 200px;
+        min-height: 200px;
+      }
+
+      .item-name-price{
+        display: flex;
+        flex-wrap: wrap;
+        margin-left: 5%;
+        font-size:20px;
+        padding-left: 10px;
+      }
+
+      .item-name{
+        width: 100%;
+        margin-bottom: 3%;
+      }
+
+      .item-price{
+        width: 100%;
+        font-family:URW Chancery L, cursive; 
+      }
+
+      .size{
+        font-size:20px;
+      }
+
+      .button-container{
+        display:flex;
+        margin: 2% auto 0;
+        width: 93%;
+        justify-content: end;
+      }
+
+      .clear-all-items-button {
+        background-color: white;
+        color: #F99E9E;
+        padding: 10px;
+        border-color: black;
+        cursor: pointer;
+        border-radius: 30px;
+        height: 40px;
+      }
+  
+      .checkout-button {
+        background-color: #F99E9E;
+        color:  white;
+        padding: 10px;
+        border-color: grey;
+        margin-left: 20px;
+        cursor: pointer;
+        border-radius: 30px;
+        height: 40px;
+      }
+  
+      h1{
+        margin-top: 12vh; 
+        text-align: center;
+      }
+  
+      button{margin-bottom: 90px;}
+  
+      body{font-weight: bold;}
+  
+
+      .displayimg{
+        height: 250px; 
+        width: 200px; 
+      }
+
+      #quantity{
+      width:50%;
+      height: 30px;
+      }
+
+      .trashbin{
+        cursor: pointer;
+      }
+
+
+      @media screen and (max-width: 850px){
+        #shopping-cart-container {
+          width:90vw;
+          margin-left: auto;
+          margin-right: auto;
+          overflow-x:scroll;
+        }
+
+        .shopping-cart-item { 
+          width: 1300px;
+          margin-bottom: 30px;
+        }
+
+
+        ::-webkit-scrollbar {
+          background-color: #f5f5f5; /* Set the desired background color */
+          width: 5px;
+          height: 5px;
+        }
+
+        .left{
+          width:650px;
+        }
+  
+        .right{
+          width: 650px;
+        }
+
+        .button-container{
+          margin-top:5%;
+        }
+
+  
+      }
+
+      @media screen and (max-width: 480px){
+        .shopping-cart-item { 
+          width: 1000px;
+        }
+
+        .displayimg{
+          min-width: 150px;
+          min-height: 150px;
+        }
+
+        .button-container{
+          margin-top: 8%;
+        }
+
+      
+      }
+  
+    </style>
+  </head>
+<body>
+  <header>
+    <div class="header-container">
+
+      <div class="topnav">
+        <a href="javascript:void(0);" class="icon" onclick="drop_down_function()">
+          <i class="fa fa-bars"></i>
+        </a>
+        <div id="browsing_links">
+          <a href="Browsing-page.html" id="men" onclick="navigate('Men')">MEN</a>
+          <a href="Browsing-page.html" id="women" onclick="navigate('Women')">WOMEN</a>
+          <a href="Browsing-page.html" id="kids" onclick="navigate('Kids')">KIDS</a>
+          <a href="Browsing-page.html" id="deals" onclick="navigate('Deals')">DEALS</a>
+        </div>
+      </div>
+
+      <div class="logo">
+        <a href="Home.html"><img src="images/logo.png" alt="Logo"></a>
+      </div>
+      <div class="navigation">
+        <ul>
+          <li><a href="Browsing-page.html" id="men" onclick="navigate('Men')">MEN</a></li>
+          <li><a href="Browsing-page.html" id="women" onclick="navigate('Women')">WOMEN</a></li>
+          <li><a href="Browsing-page.html" id="kids" onclick="navigate('Kids')">KIDS</a></li>
+          <li><a href="Browsing-page.html" id="deals" onclick="navigate('Deals')">DEALS</a></li>
+        </ul>
+      </div>
+      <div class="icons">
+        <div>
+          <a href="Wishlist-page.html"><img src="images/wishlist.png" alt="Wishlist"></a>
+        </div>
+        <div>
+          <a href="Shopping-cart-page.html"><img src="images/shopping-cart.png" alt="Shopping Cart"></a>
+        </div>
+        <div>
+          <a href="Login-page.html"><img src="images/profile.png" alt="Profile"></a>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+  <main>
+  
+  <h1>Shopping Cart</h1>
+
+  <div id="shopping-cart-container">
+  </div>
+
+  <div class="button-container">
+    <button class="clear-all-items-button" onclick="delete_all_items()">Clear All Items</button>
+    <button class="checkout-button">Proceed to Checkout</button>
+  </div>
+  </main>
+
+
+
+
+  <footer class="footer">
+    <div class="left-div">
+      <div class="left-div-title-container">
+        <a href="Contact-us-page.html"><h2>Contact Us!</h2></a>
+      </div>
+      <div class="left-div-images-container">
+        <img src="images/facebook.avif" alt="Image 1">
+        <img src="images/instagram.png" alt="Image 2">
+        <img src="images/email.png" alt="Image 3" style="width: 30px;">
+      </div>
+    </div>
+    <div class="right-div">
+      <input type="text" class="search-bar" placeholder="Looking for something else?">
+    </div>
+  </footer>
+
+  <script>
+   const storedItemDetailsString = sessionStorage.getItem('cart_array');
+   const storedItemDetailsString1 = sessionStorage.getItem('size_array');
+   const storedItemDetailsString2 = sessionStorage.getItem('quantity_array');
+       
+   // Parse the retrieved string back into an array
+   let retrieved_array = JSON.parse(storedItemDetailsString);
+   let retrieved_array1 = JSON.parse(storedItemDetailsString1);
+   let retrieved_array2 = JSON.parse(storedItemDetailsString2);
+
+   const cart = [];
+
+   for (const itemID of retrieved_array){
+     const item = itemDetails.find(item => item.id === itemID);
+     if (item) {
+       cart.push(item);
+     }
+   }
+   // Example data for shopping cart items
+   
+
+   const shoppingcartcontainer = document.getElementById('shopping-cart-container');
+   // Loop through the wishlist items and generate the HTML for each item
+   var i = 0;
+   cart.forEach(item => {
+     const itemHtml = `
+     <div class="shopping-cart-item">
+      <div class="left"><img class="displayimg" src=${item.image} alt="model">
+        <div class="item-name-price">
+          <span class="item-name"> ${item.name} </span>
+          <span class="item-price"> ${item.price} </span>
+        </div>
+      </div>
+      <div class="right">
+      <div class="size">size : ${retrieved_array1[i]}</div>
+      <div><input type="number" id="quantity" min="1" max="10" value=${retrieved_array2[i]}> </div>
+      <div class="trashbin" onclick="delete_item(${i})"><img src="images/trash-bin.png" alt="throw away"></div>
+      </div>
+    </div>
+     `;
+
+     shoppingcartcontainer.innerHTML += itemHtml;
+     i+=1;
+   });
+
+
+   function delete_item(id){
+    //remove item based on id
+    retrieved_array.splice(id, 1);
+    retrieved_array1.splice(id, 1);
+    retrieved_array2.splice(id, 1);
+
+    // Convert the modified array back into a string
+    const updatedString = JSON.stringify(retrieved_array);
+    const updatedString1 = JSON.stringify(retrieved_array1);
+    const updatedString2 = JSON.stringify(retrieved_array2);
+
+    // Store the updated string back into sessionStorage
+    sessionStorage.setItem('cart_array', updatedString);
+    sessionStorage.setItem('size_array', updatedString1);
+    sessionStorage.setItem('quantity_array', updatedString2);
+    location.reload()
+   };
+
+   function delete_all_items(){
+    //remove all items
+    retrieved_array.splice(0);
+    retrieved_array1.splice(0);
+    retrieved_array2.splice(0);
+
+    // Convert the modified array back into a string
+    const updatedString = JSON.stringify(retrieved_array);
+    const updatedString1 = JSON.stringify(retrieved_array1);
+    const updatedString2 = JSON.stringify(retrieved_array2);
+
+    // Store the updated string back into sessionStorage
+    sessionStorage.setItem('cart_array', updatedString);
+    sessionStorage.setItem('size_array', updatedString1);
+    sessionStorage.setItem('quantity_array', updatedString2);
+    location.reload()
+   }
+
+   function drop_down_function() {
+      var x = document.getElementById("browsing_links");
+      if (x.style.display === "block") {
+        x.style.display = "none";
+      } else {
+        x.style.display = "block";
+      }
+    }
+ </script>
+</body>
+</html>

@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Browsing page</title>
+  <link rel="stylesheet" href="CSS.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="item-details.js"></script>
+  <style>
+    .sidebar {
+      position: fixed;
+      left: 0;
+      width: 15%;
+      margin-top: 9vh;
+      height: 80vh;
+      background-color: #D9D9D9;
+    }
+
+    .title-filter{
+      display: none;
+      }
+    
+    .main-title{
+      font-size: 32px;
+      font-weight: bold;
+      text-align: center;
+    }
+    /* Title styles */
+    .title {
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+      background-color: #FD9898;
+      margin-bottom: 0;
+      line-height: 200%;
+    }
+
+    /* Category styles */
+    .category {
+      margin-top: 20px;
+    }
+
+    /* Price range styles */
+    .price-range {
+      margin-top: 40px;
+    }
+
+    /* Pink content styles */
+    .pink-content {
+      background-color: #F0C8C8;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      font-weight: bold;
+    }
+    .pink-content ul {
+        list-style-type: none;
+    }
+
+    .pink-content ul li {
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+    .pink-content ul li:hover{
+      text-decoration: underline;
+    }
+
+    /* Dark pink title styles */
+    .dark-pink-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #ff2098;
+    }
+
+    #second-div {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .pink-content input{
+        display: inline;
+        width: 120px;
+        margin: 5px;
+        border-radius: 5px;
+        border-width: 1.5px;
+    }
+    .pink-content span{
+        margin-left: 14px;
+        font-size: 13px;
+    }
+
+    .main-content {
+      margin-left: 17%; /* Adjust the margin to accommodate the width of the sidebar */
+      margin-top: 11vh;
+      margin-right: 3%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      position: fixed;
+      overflow: scroll;
+      overflow-x: hidden;
+      height: 77%;
+      width: 80%;
+    }
+
+    .main-content a{
+      cursor: pointer;
+    }
+    .item h1:hover{
+      opacity: 70% ;
+    }
+
+    .price:hover{
+      opacity: 70% ;
+    }
+
+    /* Individual Item Styles */
+    .item {
+      width: 23%; /* Adjust the width of each item container */
+      padding: 10px;
+      /* max-height: 300px;!!!!! */
+    }
+
+    /* Item Image Styles */
+    .item img {
+      width: 100%;
+      height: 70%;
+      max-height: 350px;
+      max-width: 270px;
+      object-fit:cover;
+      /* Add other image styles here */
+    }
+
+    /* Item Title Styles */
+    .item h1 {
+      font-size: 16px;
+      /* Add other title styles here */
+    }
+
+    /* Item Price Styles */
+    .item .price {
+      font-size: 18px;
+      font-weight: bolder;
+      /* Add other price styles here */
+    }
+
+    .footer{
+      position: fixed;
+    }
+
+
+    @media screen and (max-width: 1270px){
+      .sidebar {
+        width: 20%;
+      }
+      .main-content {
+        margin-left: 23%; /* Adjust the margin to accommodate the width of the sidebar */
+      }
+            
+      .item {
+        min-width: 200px;
+        width: 30%;
+      }
+
+  }
+
+    @media screen and (max-width: 850px){
+      .sidebar{
+        display: none;
+      }
+
+      .main-content{
+        width: 100%;
+        height: 80vh;
+        justify-content: center;
+        align-content: flex-start;
+        position: relative;
+        margin-top: 12vh;
+        margin-left: 0px;
+      }
+
+      .title-filter{
+        display: flex;
+        position: relative;
+        margin-bottom: 2vh;
+        width: 87%;
+        justify-content: space-between;
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+        height:100px;
+      }
+
+      .main-title2{
+        font-size: 50px;
+        font-family: URW Chancery L, cursive;
+      }
+
+      .filter-button {
+        width: 150px;
+        background-color: #e09696;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: grey;
+        border-radius: 30px;
+        cursor: pointer;
+      }  
+
+      .filter {
+        position: relative;
+        display: block;
+      }
+
+      #filter-content {
+        display: none;
+        position: fixed;
+        right: 8%;
+        background-color: #f9f9f9;
+        z-index: 998;
+      }
+
+      #filter-content a {
+        display: block;
+        background-color: #e09696;
+        color: black;
+        width: 35vw;
+        min-width: 160px;
+        height: 5vh;;
+        padding: 12px 16px;
+      }
+
+      #filter-content a:hover {
+        background-color: lightgray;
+      }
+
+
+    }
+
+    @media screen and (max-width: 680px){
+      .item{
+        width: 40%;
+        margin-bottom: 20px;
+        min-width: none;
+      }
+
+      .main-title2{
+        font-size: 40px;
+        font-family: URW Chancery L, cursive;
+      }
+
+      .filter-button {
+        height: 50px;
+      }  
+    }
+
+    @media screen and (max-width: 430px){
+      .item h1,.price{
+        font-size: 13px;
+      }
+
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+
+      <div class="topnav">
+        <a href="javascript:void(0);" class="icon" onclick="drop_down_function()">
+          <i class="fa fa-bars"></i>
+        </a>
+        <div id="browsing_links">
+          <a href="Browsing-page.html" id="men" onclick="navigate('Men')">MEN</a>
+          <a href="Browsing-page.html" id="women" onclick="navigate('Women')">WOMEN</a>
+          <a href="Browsing-page.html" id="kids" onclick="navigate('Kids')">KIDS</a>
+          <a href="Browsing-page.html" id="deals" onclick="navigate('Deals')">DEALS</a>
+        </div>
+      </div>
+
+      <div class="logo">
+        <a href="Home.html"><img src="images/logo.png" alt="Logo"></a>
+      </div>
+      <div class="navigation">
+        <ul>
+          <li><a href="Browsing-page.html" id="men" onclick="navigate('Men')">MEN</a></li>
+          <li><a href="Browsing-page.html" id="women" onclick="navigate('Women')">WOMEN</a></li>
+          <li><a href="Browsing-page.html" id="kids" onclick="navigate('Kids')">KIDS</a></li>
+          <li><a href="Browsing-page.html" id="deals" onclick="navigate('Deals')">DEALS</a></li>
+        </ul>
+      </div>
+      <div class="icons">
+        <div>
+          <a href="Wishlist-page.html"><img src="images/wishlist.png" alt="Wishlist"></a>
+        </div>
+        <div>
+          <a href="Shopping-cart-page.html"><img src="images/shopping-cart.png" alt="Shopping Cart"></a>
+        </div>
+        <div>
+          <a href="Login-page.html"><img src="images/profile.png" alt="Profile"></a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="sidebar">
+    <h1 class="main-title" id="main-title">Women</h1>
+    <div class="category">
+      <h2 class="title">Categories</h2>
+      <div class="pink-content">
+        <ul>
+          <li id='All' onclick="get_category('All')">All</li>
+          <li id='Top' onclick="get_category('Top')">Top</li>
+          <li id='Bottoms' onclick="get_category('Bottoms')">Bottoms</li>
+          <li id='Outwear' onclick="get_category('Outwear')">Outwear</li>
+          <li id='Accessories' onclick="get_category('Accessories')">Accessories</li>
+        </ul>
+      </div>
+    </div>
+    <div class="price-range">
+      <h2 class="title">Price Range (RM)</h2>
+      <div class="pink-content" id="second-div">
+        <span>Min Price:</span>
+        <input type="text" id="min-price" onkeydown="get_price_range(event)">
+        <span>Max Price:</span>
+        <input type="text" id="max-price" onkeydown="get_price_range(event)">
+      </div>
+    </div>
+  </div>
+  
+
+
+  <div class="main-content">
+    <div class="title-filter">
+      <h1 class="main-title2" id="main-title2">Women</h1>
+      <div class="filter">
+        <button class="filter-button" onclick="filter_drop_down_function()">Filter</button>
+        <div id="filter-content">
+            <a id='All' onclick="get_category('All')">All</a>
+            <a id='Top' onclick="get_category('Top')">Top</a>
+            <a id='Bottoms' onclick="get_category('Bottoms')">Bottoms</a>
+            <a id='Outwear' onclick="get_category('Outwear')">Outwear</a>
+            <a id='Accessories' onclick="get_category('Accessories')">Accessories</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="item" id="item1">
+      <a href="Item-page.html" onclick="set_current_browsing_item('item1')">
+        <img src="images/image1.png" alt="Trim Crop Sleeve Blouse">
+        <h1>Trim Crop Sleeve Blouse</h1>
+        <div class="price">RM 50</div>
+      </a>
+    </div>
+    
+    <div class="item" id="item2">
+      <a href="Item-page.html" onclick="set_current_browsing_item('item2')">
+        <img src="images/image2.png" alt="Geometric Frame Boho Fashion Glasses">
+        <h1>Geometric Frame Boho Fashion Glasses</h1>
+        <div class="price">RM 100</div>
+      </a>
+    </div>
+    
+    <div class="item" id="item3">
+      <a href="Item-page.html" onclick="set_current_browsing_item('item3')">
+        <img src="images/image3.png" alt="Women Solid Square Buckle Casual Belt">
+        <h1>Women Solid Square Buckle Casual Belt</h1>
+        <div class="price">RM 40</div>
+      </a>
+    </div>
+    
+    <div class="item" id="item4">
+      <a href="Item-page.html" onclick="set_current_browsing_item('item4')">
+        <img src="images/image4.png" alt="Oversized Pocket Crew Neck Half Sleeve T-Shirt">
+        <h1>Oversized Pocket Crew Neck Half Sleeve T-Shirt</h1>
+        <div class="price">RM 40</div>
+      </a>
+    </div>
+    
+    <div class="item" id="item5">
+      <a href="Item-page.html" onclick="set_current_browsing_item('item5')">
+        <img src="images/image5.png" alt="Cotton Broadcloth Check short Sleeve Shirt">
+        <h1>Cotton Broadcloth Check short Sleeve Shirt</h1>
+        <div class="price">RM 60</div>
+      </a>
+    </div>
+    
+    <div class="item" id="item6">
+      <a href="Item-page.html" onclick="set_current_browsing_item('item6')">
+        <img src="images/image6.png" alt="Cotton Broadcloth Check Long Sleeve Shirt">
+        <h1>Cotton Broadcloth Check Long Sleeve Shirt</h1>
+        <div class="price">RM 70</div>
+      </a>
+    </div>
+    
+    <div class="item" id="item7">
+      <a href="Item-page.html" onclick="set_current_browsing_item('item7')">
+        <img src="images/image7.png" alt="Crew Neck Short Sleeve T-Shirt">
+        <h1>Crew Neck Short Sleeve T-Shirt</h1>
+        <div class="price">RM 30</div>
+      </a>
+    </div>
+    
+    <div class="item" id="item8">
+      <a href="Item-page.html" onclick="set_current_browsing_item('item8')">
+        <img src="images/image8.png" alt="Smart Ankle Pants">
+        <h1>Smart Ankle Pants</h1>
+        <div class="price">RM 60</div>
+      </a>
+    </div>
+    
+    <div class="item" id="item9">
+      <a href="Item-page.html" onclick="set_current_browsing_item('item9')">
+        <img src="images/image9.png" alt="Sweat Pants">
+        <h1>Sweat Pants</h1>
+        <div class="price">RM 80</div>
+      </a>
+    </div>
+    
+    <div class="item" id="item10">
+      <a href="Item-page.html" onclick="set_current_browsing_item('item10')">
+        <img src="images/image10.png" alt="Stretch Active Shorts">
+        <h1>Stretch Active Shorts</h1>
+        <div class="price">RM 60</div>
+      </a>
+    </div>
+    
+    <div class="item" id="item11">
+      <a href="Item-page.html" onclick="set_current_browsing_item('item11')">
+        <img src="images/image11.png" alt="Solid Pleated Detail Wide Leg Shorts">
+        <h1>Solid Pleated Detail Wide Leg Shorts</h1>
+        <div class="price">RM 45</div>
+      </a>
+    </div>
+    
+    <div class="item" id="item12">
+      <a href="Item-page.html" onclick="set_current_browsing_item('item12')">
+        <img src="images/image12.png" alt="Sweetheart Neck Ruched Crop">
+        <h1>Sweetheart Neck Ruched Crop</h1>
+        <div class="price">RM 55</div>
+      </a>
+    </div>
+    
+    <div class="item" id="item13">
+      <a href="Item-page.html" onclick="set_current_browsing_item('item13')">
+        <img src="images/image13.png" alt="Solid Flounce Long Sleeve Crop Tee">
+        <h1>Solid Flounce Long Sleeve Crop Tee</h1>
+        <div class="price">RM 55</div>
+      </a>
+    </div>
+    
+    <div class="item" id="item14">
+      <a href="Item-page.html" onclick="set_current_browsing_item('item14')">
+        <img src="images/image14.png" alt="Belted Shorts">
+        <h1>Belted Shorts</h1>
+        <div class="price">RM 65</div>
+      </a>
+    </div>
+    
+    <div class="item" id="item15">
+      <a href="Item-page.html" onclick="set_current_browsing_item('item15')">
+        <img src="images/image15.png" alt="Drawstring Waist Shorts">
+        <h1>Drawstring Waist Shorts</h1>
+        <div class="price">RM 25</div>
+      </a>
+    </div>
+    
+    <div class="item" id="item16">
+      <a href="Item-page.html" onclick="set_current_browsing_item('item16')">
+        <img src="images/image16.png" alt="Cotton Short Sleeve T-shirt & Shorts">
+        <h1>Cotton Short Sleeve T-shirt & Shorts</h1>
+        <div class="price">RM 55</div>
+      </a>
+    </div>
+    
+    <div class="item" id="item17">
+      <a href="Item-page.html" onclick="set_current_browsing_item('item17')">
+        <img src="images/image17.png" alt="Open Collar Short Sleeve Shirt & Shorts">
+        <h1>Open Collar Short Sleeve Shirt & Shorts</h1>
+        <div class="price">RM 75</div>
+      </a>
+    </div>
+    
+    <div class="item" id="item18">
+      <a href="Item-page.html" onclick="set_current_browsing_item('item18')">
+        <img src="images/image18.png" alt="Hooded Neck Tee & Shorts">
+        <h1>Hooded Neck Tee & Shorts</h1>
+        <div class="price">RM 45</div>
+      </a>
+    </div>
+
+    <div class="item" id="item19">
+      <a href="Item-page.html" onclick="set_current_browsing_item('item19')">
+        <img src="images/image19.png" alt="Cotton Graphic Pocket Patched Shirt Without Tee">
+        <h1>Cotton Graphic Pocket Patched Shirt Without Tee</h1>
+        <div class="price">RM 65</div>
+      </a>
+    </div>
+    
+    <div class="item" id="item20">
+      <a href="Item-page.html" onclick="set_current_browsing_item('item20')">
+        <img src="images/image20.png" alt="Kids Graphic Tee">
+        <h1>Kids Graphic Tee</h1>
+        <div class="price">RM 65</div>
+      </a>
+    </div>
+    
+    <div class="item" id="item21">
+      <a href="Item-page.html" onclick="set_current_browsing_item('item21')">
+        <img src="images/image21.png" alt="Kids Cartoon Graphic Tee">
+        <h1>Kids Cartoon Graphic Tee</h1>
+        <div class="price">RM 65</div>
+      </a>
+    </div>
+    
+    <div class="item" id="item22">
+      <a href="Item-page.html" onclick="set_current_browsing_item('item22')">
+        <img src="images/image22.png" alt="Kids Girl Strawberry Pattern Drop Shoulder Cardigan">
+        <h1>Kids Girl Strawberry Pattern Drop Shoulder Cardigan</h1>
+        <div class="price">RM 35</div>
+      </a>
+    </div>
+    
+    <div class="item" id="item23">
+      <a href="Item-page.html" onclick="set_current_browsing_item('item23')">
+        <img src="images/image23.png" alt="Kids Girl Flap Pocket Ruffle Hem Denim Dress">
+        <h1>Kids Girl Flap Pocket Ruffle Hem Denim Dress</h1>
+        <div class="price">RM 65</div>
+      </a>
+    </div>
+    
+    <div class="item" id="item24">
+      <a href="Item-page.html" onclick="set_current_browsing_item('item24')">
+        <img src="images/image24.png" alt="Solid Round Neck Tee">
+        <h1>Solid Round Neck Tee</h1>
+        <div style="color:red;" class="price"><span style="text-decoration: line-through;color: black;">RM 35</span>  RM 25</div>
+      </a>
+    </div>
+    
+    <div class="item" id="item25">
+      <a href="Item-page.html" onclick="set_current_browsing_item('item25')">
+        <img src="images/image25.png" alt="Letter Patched Detail Flap Pocket Drawstring Waist Cargo Shorts">
+        <h1>Letter Patched Detail Flap Pocket Drawstring Waist Cargo Shorts</h1>
+        <div style="color:red;" class="price"><span style="text-decoration: line-through;color: black;">RM 65</span>  RM 45</div>
+      </a>
+    </div>
+    
+    <div class="item" id="item26">
+      <a href="Item-page.html" onclick="set_current_browsing_item('item26')">
+        <img src="images/image26.png" alt="Flap Pocket Side Cargo Pants">
+        <h1>Flap Pocket Side Cargo Pants</h1>
+        <div style="color:red;" class="price"><span style="text-decoration: line-through;color: black;">RM 45</span>  RM 35</div>
+      </a>
+    </div>
+    
+    <div class="item" id="item27">
+      <a href="Item-page.html" onclick="set_current_browsing_item('item27')">
+        <img src="images/image27.png" alt="Letter Graphic Stripped Trim Short">
+        <h1>Letter Graphic Stripped Trim Short</h1>
+        <div style="color:red;" class="price"><span style="text-decoration: line-through;color: black;">RM 25</span>  RM 15</div>
+      </a>
+    </div>
+    
+    <div class="item" id="item28">
+      <a href="Item-page.html" onclick="set_current_browsing_item('item28')">
+        <img src="images/image28.png" alt="Solid Waffle Knit Polo Shirt">
+        <h1>Solid Waffle Knit Polo Shirt</h1>
+        <div style="color:red;" class="price"><span style="text-decoration: line-through;color: black;">RM 65</span>  RM 50</div>
+      </a>
+    </div>
+    
+    <div class="item" id="item29">
+      <a href="Item-page.html" onclick="set_current_browsing_item('item29')">
+        <img src="images/image29.png" alt="Two Tone Varsity Jacket">
+        <h1>Two Tone Varsity Jacket</h1>
+        <div class="price">RM 100</div>
+      </a>
+    </div>
+    
+    <div class="item" id="item30">
+      <a href="Item-page.html" onclick="set_current_browsing_item('item30')">
+        <img src="images/image30.png" alt="Cartoon Bear Jacket">
+        <h1>Cartoon Bear Jacket</h1>
+        <div class="price">RM 120</div>
+      </a>
+    </div>
+    
+    <div class="item" id="item31">
+      <a href="Item-page.html" onclick="set_current_browsing_item('item31')">
+        <img src="images/image31.png" alt="Men Geometric Pattern Slippers For Indoor">
+        <h1>Men Geometric Pattern Slippers For Indoor</h1>
+        <div class="price">RM 50</div>
+      </a>
+    </div>
+    
+    <div class="item" id="item32">
+      <a href="Item-page.html" onclick="set_current_browsing_item('item32')">
+        <img src="images/image32.png" alt="Men Black Square Buckle Belt">
+        <h1>Men Black Square Buckle Belt</h1>
+        <div class="price">RM 30</div>
+      </a>
+    </div>
+    
+    <div class="item" id="item33">
+      <a href="Item-page.html" onclick="set_current_browsing_item('item33')">
+        <img src="images/image33.png" alt="Embroidery Baseball Cap">
+        <h1>Embroidery Baseball Cap</h1>
+        <div class="price">RM 40</div>
+      </a>
+    </div>
+    
+    <div class="item" id="item34">
+      <a href="Item-page.html" onclick="set_current_browsing_item('item34')">
+        <img src="images/image34.png" alt="Quilted Detail Baguette Bag">
+        <h1>Quilted Detail Baguette Bag</h1>
+        <div class="price">RM 70</div>
+      </a>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <div class="left-div">
+      <div class="left-div-title-container">
+        <a href="Contact-us-page.html"><h2>Contact Us!</h2></a>
+      </div>
+      <div class="left-div-images-container">
+        <img src="images/facebook.avif" alt="Image 1">
+        <img src="images/instagram.png" alt="Image 2">
+        <img src="images/email.png" alt="Image 3" style="width: 30px;">
+      </div>
+    </div>
+    <div class="right-div">
+      <input type="text" class="search-bar" placeholder="Looking for something else?">
+    </div>
+  </footer>
+
+<script>
+    var sidebar_title = document.getElementById("main-title");
+    var sidebar_title2 = document.getElementById("main-title2");
+    sidebar_title.textContent = navigationSelection;
+    sidebar_title2.textContent = navigationSelection;
+    var currentCategory = document.getElementById(categorySelection);
+    currentCategory.style.textDecoration = 'underline';
+    document.getElementById("min-price").value = minPrice;
+    document.getElementById("max-price").value = maxPrice;
+
+    function get_category(x){
+      sessionStorage.setItem('category', x);
+      location.reload();
+    }
+
+    function get_price_range(event){
+      if (event.keyCode === 13){
+        sessionStorage.setItem('min-price', document.getElementById("min-price").value);
+        sessionStorage.setItem('max-price', document.getElementById("max-price").value);
+        location.reload();
+      }
+       
+    }
+  
+    function getItemDetails(itemId) {
+      return itemDetails.find(item => item.id === itemId);
+    }
+
+    const item_list = document.getElementsByClassName("item");
+
+    for (let i = 0; i < item_list.length; i++) {
+      const item = getItemDetails(item_list[i].id);
+      if (item.gender == navigationSelection && item.category == categorySelection && parseInt(item.price.match(/\d+/)[0])>= minPrice && parseInt(item.price.match(/\d+/)[0]) <= maxPrice) {
+        item_list[i].style.display = "block";
+      }
+      else if (item.gender == navigationSelection && sessionStorage.getItem('category') == "All" && parseInt(item.price.match(/\d+/)[0])>= minPrice && parseInt(item.price.match(/\d+/)[0]) <= maxPrice) {
+        item_list[i].style.display = "block";
+      } 
+      else {
+        item_list[i].style.display = "none"; 
+      }
+    }
+
+    function drop_down_function() {
+      var x = document.getElementById("browsing_links");
+      if (x.style.display === "block") {
+        x.style.display = "none";
+      } else {
+        x.style.display = "block";
+      }
+    }
+
+    function filter_drop_down_function(){
+      var y = document.getElementById("filter-content");
+      if (y.style.display === "block") {
+        y.style.display = "none";
+      } else {
+        y.style.display = "block";
+      }
+    }
+
+</script>
+
+</body>
+</html>

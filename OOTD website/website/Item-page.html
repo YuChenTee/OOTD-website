@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Item Page</title>
+  <link rel="stylesheet" href="CSS.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="item-details.js"></script>
+  <style>
+    .item-details-container {
+      display: flex;
+      width: 100%;
+      height: 95vh;
+      margin: 13vh 0;
+      justify-content: center;
+    }
+
+    .left {
+      display: flex;
+      flex-wrap: wrap;
+      align-content: flex-start; 
+      justify-content: flex-start;
+      width: 35%;
+      padding-left:2% ;
+    }
+
+    .right {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      align-content: flex-start;
+      width: 45%;
+      height:100%;
+      margin-top: 2.5%;
+    }
+    
+    .navigation-state {
+      width: 85%;
+      margin-top: 20px;
+      height: fit-content;
+    }
+    .navigation-state a{
+      font-size: 20px;
+    }
+
+    .navigation-state a:hover{
+      text-decoration: underline;
+    }
+
+    .item-image {
+      width: 85%;
+      margin-top: 4%;
+      object-fit: contain;
+      object-position: left;
+      max-height: 550px;
+      max-width: 450px;
+    }
+
+    #item-category{
+      font-size:20px;
+    }
+
+    .item-title{
+      width: 100%;
+      height: fit-content;
+    }
+
+    .title {
+      width: 100%;
+      font-size: 35px;
+      font-weight: bold;
+    }
+
+    .price {
+      width: 100%;
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    .size {
+      width: 100%;
+      height: fit-content;
+      font-weight: bold;
+      font-size: 23px;
+      margin-top: 8%;
+    }
+
+    .button-container{
+      margin-top: 2%;
+    }
+
+    .size-button{
+      margin-right: 30px;
+      margin-top: 1%;
+      width: 35px;
+      height:35px;
+      border: 2px solid #FD9898;
+      cursor: pointer;
+      background-color: white;
+    }
+
+    .size-button:hover{
+      background-color: lightgray;
+    }
+
+    .size-button:focus{
+      background-color: lightgray;
+    }
+
+    #item-description{
+      overflow-y:scroll;
+      width:100%;
+      height: 17%;
+      font-size: 20px;
+      margin-top: 6%;
+    }
+
+    .quantity-container {
+      display: flex;
+      width:100%;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 5%;
+    }
+
+    #quantity{
+      width:7%;
+      height: 30px;
+    }
+
+    .add-to-cart {
+      padding: 10px 20px;
+      background-color: #FD9898;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      border-radius: 20px;
+      width: 60%;
+      height: 50px;
+    }
+
+    .wishlist-icon {
+      width: 35px;
+      height: 35px;
+      cursor: pointer;
+    }
+
+    .notification {
+      position: fixed;
+      z-index: 999;
+      top: 13%;
+      right: 1%;
+      background-color: #F99E9E;
+      color: white;
+      padding: 10px;
+      display: none;
+    }
+
+    .item-footer{
+      width: 100%;
+      display: flex;
+      align-items: center;
+      background-color: white;
+    }
+
+
+
+    @media screen and (max-width: 850px){
+      .item-details-container{
+        flex-wrap: wrap;
+        width: 100%;
+        position: relative;
+      }
+
+      .left{
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin-top:0px;
+        padding:0;
+      }
+
+      .item-image {
+        width: 85%;
+        margin-top: 4%;
+        max-width: 550px;
+        max-height: none;
+      }
+
+      .navigation-state{
+        width: 85%;
+        max-width: 550px;
+      }
+
+      .navigation-state a, #item-category{
+        font-size: 28px;
+      }
+
+      .right{
+        width:85%;
+        height: 70%;
+        margin: 0px;
+        max-width: 550px;
+        margin-top: 20px;
+        padding-left: 4%;
+      }
+
+      .item-title,.price,#item-description,.quantity-container{
+        width: 100%;
+      }
+
+      .size{
+        width: 100%;
+        margin-top: 30px;
+        font-size: 28px;
+      }
+
+      #item-description{
+        width: 100%;
+        margin-top: 50px;
+        font-size: 24px;
+      }
+
+      .quantity-container{
+        margin-top: 80px;
+      }
+
+      .item-footer{
+        position: absolute;
+        bottom: -900px;
+      }
+
+    }
+
+    @media screen and (max-width: 550px){
+
+      .navigation-state a, #item-category{
+        font-size: 20px;
+      }
+      .right{
+        padding-left: 7%;
+      }
+      
+      .title,.price{
+        font-size: 27px ;
+      }
+
+      #item-description{
+        font-size: 20px;
+      }
+
+      #quantity{
+        min-width: 28px;
+      }
+
+      .item-footer{
+        position: relative;
+        bottom: -700px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header-container">
+
+      <div class="topnav">
+        <a href="javascript:void(0);" class="icon" onclick="drop_down_function()">
+          <i class="fa fa-bars"></i>
+        </a>
+        <div id="browsing_links">
+          <a href="Browsing-page.html" id="men" onclick="navigate('Men')">MEN</a>
+          <a href="Browsing-page.html" id="women" onclick="navigate('Women')">WOMEN</a>
+          <a href="Browsing-page.html" id="kids" onclick="navigate('Kids')">KIDS</a>
+          <a href="Browsing-page.html" id="deals" onclick="navigate('Deals')">DEALS</a>
+        </div>
+      </div>
+
+      <div class="logo">
+        <a href="Home.html"><img src="images/logo.png" alt="Logo"></a>
+      </div>
+      <div class="navigation">
+        <ul>
+          <li><a href="Browsing-page.html" id="men" onclick="navigate('Men')">MEN</a></li>
+          <li><a href="Browsing-page.html" id="women" onclick="navigate('Women')">WOMEN</a></li>
+          <li><a href="Browsing-page.html" id="kids" onclick="navigate('Kids')">KIDS</a></li>
+          <li><a href="Browsing-page.html" id="deals" onclick="navigate('Deals')">DEALS</a></li>
+        </ul>
+      </div>
+      <div class="icons">
+        <div>
+          <a href="Wishlist-page.html"><img src="images/wishlist.png" alt="Wishlist"></a>
+        </div>
+        <div>
+          <a href="Shopping-cart-page.html"><img src="images/shopping-cart.png" alt="Shopping Cart"></a>
+        </div>
+        <div>
+          <a href="Login-page.html"><img src="images/profile.png" alt="Profile"></a>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+  <div class="notification" id="wishlist-notification">Item added!!!</div>
+  <div class="item-details-container">
+    <div class="left">
+      <div class="navigation-state">
+        <a href="home.html">Home</a> &gt; <a href="Browsing-page.html"><span id="item-gender"></span></a> &gt;
+        <span id="item-category"></span>
+      </div>
+      <img class="item-image" src="" alt="Item Image">
+    </div>
+
+    <div class="right">
+      <div class="item-title">
+        <h1 class="title" id="item-name"></h1>
+        <p class="price" id="item-price"></p>
+      </div>
+      <div class="size">
+        <label for="size">Size</label>
+        <form class="button-container" >
+          <button class="size-button" id="S" type="radio" name="option" value="small" onclick="selectsize('S')"> S<br>
+          <button class="size-button" id="M" type="radio" name="option" value="medium" onclick="selectsize('M')"> M<br>
+          <button class="size-button" id="L" type="radio" name="option" value="Large" onclick="selectsize('L')"> L<br>
+        </form>
+      </div>
+
+      <div id="item-description">
+      </div>
+
+      <div class="quantity-container">
+        <input type="number" id="quantity" min="1" max="10" value="1">
+        <button class="add-to-cart" onclick="getNotification(),add_items_into_cart()">Add to Cart</button>
+        <img class="wishlist-icon" src="images/wishlist.png" alt="Wishlist" onclick="getNotification(),
+        add_items_into_wishlist()">
+      </div>
+    </div>
+  </div>
+
+  <footer class="item-footer">
+    <div class="left-div">
+      <div class="left-div-title-container">
+        <a href="Contact-us-page.html"><h2>Contact Us!</h2></a>
+      </div>
+      <div class="left-div-images-container">
+        <img src="images/facebook.avif" alt="Image 1">
+        <img src="images/instagram.png" alt="Image 2">
+        <img src="images/email.png" alt="Image 3" style="width: 30px;">
+      </div>
+    </div>
+    <div class="right-div">
+      <input type="text" class="search-bar" placeholder="Looking for something else?">
+    </div>
+  </footer>
+
+  <script>
+    const itemId = sessionStorage.getItem('current-item');
+
+    // Get the item details for the given ID
+    const item = itemDetails.find(item => item.id === itemId);
+
+    // Update the item details content on the page
+
+    const itemImage = document.querySelector('.item-image');
+    const itemCategory = document.getElementById('item-category');
+    const itemName = document.getElementById('item-name');
+    const itemPrice = document.getElementById('item-price');
+    const itemDescription = document.getElementById('item-description');
+    const itemGender = document.getElementById('item-gender');
+
+    itemImage.src = item.image;
+    itemCategory.textContent = item.category;
+    itemName.textContent = item.name
+    itemPrice.textContent = item.price;
+    itemDescription.textContent = item.description;
+    itemGender.textContent = item.gender;
+    
+    // select item size
+    function selectsize(size){
+      sessionStorage.setItem('size',size);
+    }
+    // if no size selected, default choose S
+    if (!sessionStorage.getItem('size')){
+      sessionStorage.setItem('size',"S");
+    }
+    // change colour of the size button
+    const button = document.getElementById(sessionStorage.getItem('size'));
+    button.style.backgroundColor = 'lightgray'
+
+    // wishlist notification
+    const wishlistNotification = document.getElementById('wishlist-notification');
+
+    function getNotification(){
+      wishlistNotification.style.display = 'block';
+      setTimeout(() => {
+        wishlistNotification.style.display = 'none';
+      }, 2000); // Hide the notification after 2 seconds (adjust as needed)
+    }
+    
+  
+    function add_items_into_wishlist(){
+      // check if sessionstorage exist
+      if(!sessionStorage.getItem('wishlist_array')){
+          // initializze array if not exist
+          const wishlist_array = [];
+          const wishlist_array_String = JSON.stringify(wishlist_array);
+
+          sessionStorage.setItem('wishlist_array',wishlist_array_String);
+      }
+      
+      // Retrieve the array from sessionStorage
+      const storedItemDetailsString = sessionStorage.getItem('wishlist_array');
+      
+      // Parse the retrieved string back into an array
+      let retrieved_array = JSON.parse(storedItemDetailsString);
+      retrieved_array.push(itemId);
+
+      // Convert the modified array back into a string
+      const updatedString = JSON.stringify(retrieved_array);
+
+      // Store the updated string back into sessionStorage
+      sessionStorage.setItem('wishlist_array', updatedString);
+
+    }
+
+    function add_items_into_cart(){
+      // Retrieve the array from sessionStorage
+      const storedItemDetailsString = sessionStorage.getItem('cart_array');
+      const storedItemDetailsString1 = sessionStorage.getItem('size_array');
+      const storedItemDetailsString2 = sessionStorage.getItem('quantity_array');
+      // Parse the retrieved string back into an array
+      let retrieved_array = JSON.parse(storedItemDetailsString);
+      retrieved_array.push(itemId);
+      let retrieved_array1 = JSON.parse(storedItemDetailsString1);
+      retrieved_array1.push(sessionStorage.getItem('size'));
+      let retrieved_array2 = JSON.parse(storedItemDetailsString2);
+      retrieved_array2.push(document.getElementById('quantity').value);
+
+      // Convert the modified array back into a string
+      const updatedString = JSON.stringify(retrieved_array);
+      const updatedString1 = JSON.stringify(retrieved_array1);
+      const updatedString2 = JSON.stringify(retrieved_array2);
+
+      // Store the updated string back into sessionStorage
+      sessionStorage.setItem('cart_array', updatedString);
+      sessionStorage.setItem('size_array', updatedString1);
+      sessionStorage.setItem('quantity_array', updatedString2);
+
+    }
+
+    function drop_down_function() {
+      var x = document.getElementById("browsing_links");
+      if (x.style.display === "block") {
+        x.style.display = "none";
+      } else {
+        x.style.display = "block";
+      }
+    }
+</script>
+</body>
+</html>
