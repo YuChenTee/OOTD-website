@@ -14,4 +14,4 @@ This is a responsive E-commerce website template designed for a modern and styli
 2. **CSS**: Stylesheets for defining the visual presentation of the website.
 3. **JavaScript**: Programming language for adding interactivity and dynamic functionality.
 
-Feel free to adjust the description as needed to provide more details or highlight specific aspects of the website code.
+
